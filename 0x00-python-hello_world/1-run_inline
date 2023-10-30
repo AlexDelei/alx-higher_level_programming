@@ -1,6 +1,2 @@
 #!/usr/bin/bash
-PYCODE=$(echo "$PYCODE")
-TMPFILE=$(mktemp /tmp/XXXXXX.py)
-echo "$PYCODE" >> "$TMPFILE"
-python3 "$TMPFILE"
-rm "$TMPFILE"
+python3 -c "$PYCODE"
