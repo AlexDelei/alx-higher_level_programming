@@ -2,6 +2,10 @@
 for i in range(10):
     for j in range(i + 1, 10):
         if i == 0:
-            print("{:02d}, ".format(i), "{:02d}".format(j), end=", " if i != 8 or j != 9 else "\n")
+            print("0{:1d}, ".format(j), end="")
         else:
-            print("{:02d}, ".format(i * 10 + j), end="" if i != 8 or j != 9 else "\n")
+            print("{:02d}, ".format(i * 10 + j), end="")
+        if i != 8 or j != 9:
+            print("", end="")
+        else:
+            print("\n", end="")
