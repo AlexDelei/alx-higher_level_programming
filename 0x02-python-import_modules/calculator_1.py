@@ -9,8 +9,6 @@ def add(a, b):
     Returns:
         The return value. a + b
     """
-    a = 10
-    b = 5
     return (a + b)
 def sub(a, b):
     """My subtraction function
@@ -22,8 +20,6 @@ def sub(a, b):
     Returns:
         The return value. a - b
     """
-    a = 10
-    b = 5
     return (a - b)
 def mul(a, b):
     """My multiplication function
@@ -35,8 +31,6 @@ def mul(a, b):
     Returns:
         The return value. a * b
     """
-    a = 10
-    b = 5
     return (a * b)
 def div(a, b):
     """My division function
@@ -48,6 +42,4 @@ def div(a, b):
     Returns:
         The return value. a / b
     """
-    a = 10
-    b = 5
     return int(a / b)
