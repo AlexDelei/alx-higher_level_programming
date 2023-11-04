@@ -5,5 +5,5 @@ def replace_in_list(my_list, idx, element):
     if idx < 0 or idx > len_:
         return my_list
     else:
-        my_list.insert(idx, element)
+        my_list[idx] = element
         return my_list
