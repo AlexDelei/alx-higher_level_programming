@@ -10,7 +10,7 @@ def search_replace(my_list, search, replace):
             # If it matches, add the 'replace' element to the modified list
             modified_list.append(replace)
         else:
-            # If it doesn't match, keep the original element in the modified list
+            # If it doesn't match, keep the original element modified list
             modified_list.append(item)
 
     return modified_list
