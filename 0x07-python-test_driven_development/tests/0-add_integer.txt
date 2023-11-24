@@ -1,14 +1,10 @@
-"""
-Module for an addition function
-
->>> add_integer(1, 99)
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(98, 2)
 100
->>> add_integer(-2, 3)
-1
->>> add_integer(0, 0)
-0
->>> add_integer(10.5, 5.5)
-16
+>>> add_integer(2)
+100
+>>> add_integer(100.3, -2)
+98
 >>> add_integer(4, "School")
 Traceback (most recent call last):
   ...
@@ -17,4 +13,3 @@ TypeError: b must be an integer
 Traceback (most recent call last):
   ...
 TypeError: a must be an integer
-"""
