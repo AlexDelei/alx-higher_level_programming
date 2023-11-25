@@ -3,8 +3,10 @@
 Module for matrix division
 >>> matrix = [[1, 2, 3], [4, 5, 6]]
 >>> matrix_divided(matrix, 2)
-[[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+[[1, 2, 3], [4, 5, 6]]
 """
+
 
 def matrix_divided(matrix, div):
     """
@@ -28,6 +30,7 @@ def matrix_divided(matrix, div):
     result_matrix = [[round(elem / div, 2) for elem in row] for row in matrix]
 
     return result_matrix
+
 
 if __name__ == "__main__":
     import doctest
