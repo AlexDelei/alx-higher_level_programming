@@ -1,83 +1,43 @@
 #!/usr/bin/python3
-"""CHESS Thing!"""
-
 
 import sys
 
 
-def print_solution(board):
-    """
-    print_solution prints each queen's position in a solution.
-    It iterates over the list of queens and prints each pair of [row, column].
-    """
-    for queen in board:
-        print(queen, end=' ')
-    print()
-
-
-def is_safe(queens, column):
-    """
-    is_safe function checks if it's safe to place a queen in the given column.
-    It ensures that no queens are in the same column or diagonals
-    """
-    for queen in queens:
-        if queen[1] == column or \
-           abs(queen[0] - len(queens)) == abs(queen[1] - column):
+def is_safe(board, row, col, N):
+    # Check if there is a queen in the same column
+    for i in range(row):
+        if board[i] == col or \
+           board[i] - i == col - row or \
+           board[i] + i == col + row:
             return False
     return True
 
 
-def solve_nqueens(n):
-    """
-    solve_nqueens function initializes an empty list to store solutions
-    and calls the solve function to find solutions.
-
-    solve function recursively explores possible queen placements
-    and adds valid solutions to the list.
-    """
-    solutions = []
-    solve([], n, solutions)
-    return solutions
-
-
-def solve(queens, n, solutions):
-    """
-    solve function recursively explores possible queen placements
-    and adds valid solutions to the list.
-    """
-    if len(queens) == n:
-        solutions.append(queens[:])
+def solve_nqueens(board, row, N):
+    if row == N:
+        # All queens are placed, print the solution
+        print([[i, board[i]] for i in range(N)])
         return
+    
+    for col in range(N):
+        if is_safe(board, row, col, N):
+            board[row] = col
+            solve_nqueens(board, row + 1, N)
 
-    for i in range(n):
-        if is_safe(queens, i):
-            queens.append([len(queens), i])
-            solve(queens, n, solutions)
-            queens.pop()
 
-
-def nqueens(n):
-    """
-    The nqueens function is responsible for handling the input,
-    checking its validity
-    and calling the solve_nqueens function to obtain a list of solutions.
-
-    It then iterates over the list of solutions
-    and prints each solution using the print_solution function.
-    """
-    if not n.isdigit():
+def nqueens(N):
+    if not N.isdigit():
         print("N must be a number")
         sys.exit(1)
-
-    n = int(n)
-
-    if n < 4:
+    
+    N = int(N)
+    
+    if N < 4:
         print("N must be at least 4")
         sys.exit(1)
-
-    board = solve_nqueens(n)
-    for solution in board:
-        print_solution(solution)
+    
+    board = [-1] * N
+    solve_nqueens(board, 0, N)
 
 
 if __name__ == "__main__":
