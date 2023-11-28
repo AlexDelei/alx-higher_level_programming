@@ -3,9 +3,10 @@
 
 
 class LockedClass:
-    __slots__ = ['first_name']
     """
     A simple example of locked object
     """
+    __slots__ = ['first_name']
+
     def __init__(self):
         pass
