@@ -5,7 +5,7 @@
 class Rectangle:
     """
     Initializing the program
-    
+
     parameters:
     width (int) - the width of the rect
     height(int) - The height of the rect
