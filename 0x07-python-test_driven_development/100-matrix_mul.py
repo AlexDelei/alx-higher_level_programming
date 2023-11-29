@@ -41,6 +41,7 @@ def matrix_mul(m_a, m_b):
 
     return result
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod("./tests/100-matrix_mul.txt")

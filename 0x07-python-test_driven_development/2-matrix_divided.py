@@ -5,6 +5,7 @@ Module for matrix division
 [[0.5 .0, 1.5], [1.5, 2.0, 2,5]]
 """
 
+
 def matrix_divided(matrix, div):
     """
     divides all elements of a matrix.
@@ -27,6 +28,7 @@ def matrix_divided(matrix, div):
     result_matrix = [[round(elem / div, 2) for elem in row] for row in matrix]
 
     return result_matrix
+
 
 if __name__ == "__main__":
     import doctest
