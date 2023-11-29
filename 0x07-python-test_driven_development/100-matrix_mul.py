@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 """
-
+Module for matrix multiplication
 """
 
 
 def matrix_mul(m_a, m_b):
     """
+    matrix multiplication
 
+    arguments:
+    m_a - matrix a
+    m_b -  matrix b
     """
     if not m_a or not any(m_a):
         raise ValueError("m_a can't be empty")
