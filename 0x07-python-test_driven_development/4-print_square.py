@@ -9,7 +9,7 @@ Module for printing a square
 """
 
 
-def print_square(size=10):
+def print_square(size):
     """
     Prints a square of size
 
