@@ -44,6 +44,7 @@ def lazy_matrix_mul(m_a, m_b):
 
     return result
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod("./tests/101-lazy_matrix_mul.txt")

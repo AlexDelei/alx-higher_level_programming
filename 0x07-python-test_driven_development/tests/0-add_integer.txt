@@ -24,3 +24,7 @@ TypeError: add_integer() missing 1 required positional argument: 'a'
 Traceback (most recent call last):
   ...
 TypeError: a must be an integer
+>>> add_integer(1.0e308, 1.0e308)
+Traceback (most recent call last):
+  ...
+OverflowError: Float overflow: result is infinity
