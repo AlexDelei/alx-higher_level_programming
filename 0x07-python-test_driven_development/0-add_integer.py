@@ -20,6 +20,7 @@ def add_integer(a, b=98):
         raise OverflowError("Float overflow: result is infinity")
     return int(a) + int(b)
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod("./tests/0-add_integer.txt")
