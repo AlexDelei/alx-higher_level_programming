@@ -44,6 +44,7 @@ class Rectangle(BaseGeometry):
         """Return the rectangle description as a string."""
         return f"[Rectangle] {self.__width}/{self.__height}"
 
+
 class Square(Rectangle):
     """initialising this mehod"""
 
