@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> try:
+>>>    base_geometry = BaseGeometry()
+>>>    base_geometry.area()
+>>> except Exception as e:
+>>>    print(f"Test Case 1: {e}")
+
