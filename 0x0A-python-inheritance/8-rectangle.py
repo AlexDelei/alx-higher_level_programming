@@ -23,7 +23,11 @@ class BaseGeometry:
 
 
 class Rectangle(BaseGeometry):
+    """initialising this mehod"""
+
     def __init__(self, width, height):
+        """constructor"""
+
         self.__width = 0  # Initialize as 0 before validation
         self.__height = 0  # Initialize as 0 before validation
         self.integer_validator("width", width)
