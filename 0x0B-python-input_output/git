@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+git add .
+git commit -m "file handling in python"
+git push
