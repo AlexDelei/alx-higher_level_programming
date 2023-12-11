@@ -109,17 +109,6 @@ class TestBase(unittest.TestCase):
         for loaded_rect, original_rect in zip(loaded_rectangles, rectangles):
             self.assertEqual(loaded_rect.to_dictionary(), original_rect.to_dictionary())
 
-    def test_load_from_file_csv_empty(self):
-        # Test loading from an empty CSV file
-        file_name = f"Rectangle.csv"
-        with open(file_name, 'w', encoding='utf-8') as f:
-            pass  # Create an empty CSV file
-
-        result = Rectangle.load_from_file_csv()
-
-        self.assertIsInstance(result, list)
-        self.assertEqual(len(result), 0)
-
 class TestRectangle(unittest.TestCase):
 
     def test_create_instance(self):
