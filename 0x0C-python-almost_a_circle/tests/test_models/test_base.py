@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -5,6 +6,27 @@ from models.square import Square
 import json
 
 class TestBase(unittest.TestCase):
+
+    def test_default_initialization(self):
+        obj = Base()
+        self.assertEqual(obj.id, 2)
+
+    def test_initialization_with_id(self):
+        obj = Base(id=5)
+        self.assertEqual(obj.id, 5)
+
+    def test_multiple_instantiation(self):
+        obj1 = Base()
+        obj2 = Base()
+        self.assertNotEqual(obj1.id, obj2.id)
+
+    def test_initialization_with_zero_id(self):
+        obj = Base(id=0)
+        self.assertEqual(obj.id, 0)
+
+    def test_initialization_with_negative_id(self):
+        obj = Base(id=-5)
+        self.assertEqual(obj.id, -5)
 
     def test_create_instance(self):
         base_instance = Base()
