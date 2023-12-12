@@ -113,7 +113,7 @@ class TestBase(unittest.TestCase):
 
     def test_from_json_string_with_none(self):
         result = Base.from_json_string(None)
-        self.assertEqual(result, '[]')
+        self.assertEqual(result, [])
 
     def test_from_json_string_with_single_object(self):
         result = Base.from_json_string('[{ "id": 89 }]')
