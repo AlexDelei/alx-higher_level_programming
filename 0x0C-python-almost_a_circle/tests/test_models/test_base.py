@@ -111,6 +111,90 @@ class TestBase(unittest.TestCase):
 
 class TestRectangle(unittest.TestCase):
 
+    def test_valid_width(self):
+        obj = Rectangle(5, 1)
+        obj.width = 5
+        self.assertEqual(obj.width, 5)
+
+    def test_invalid_width_type(self):
+        with self.assertRaises(ValueError):
+            obj = Rectangle(-1, 4)
+
+    def test_invalid_height_type(self):
+        with self.assertRaises(ValueError):
+            obj = Rectangle(3, -2)
+
+    def test_invalid_width_type(self):
+        with self.assertRaises(TypeError):
+            obj = Rectangle('invalid', 4)
+
+    def test_invalid_height_type(self):
+        with self.assertRaises(TypeError):
+            obj = Rectangle(3, 'invalid')
+
+    def test_zero_width_and_height(self):
+        with self.assertRaises(ValueError):
+            obj = Rectangle(0, 0)
+
+    def test_valid_width_and_height_with_default_values(self):
+        obj = Rectangle(3, 4)
+        self.assertEqual(obj.x, 0)  # Assuming default x value is 0
+        self.assertEqual(obj.y, 0)  # Assuming default y value is 0
+        self.assertEqual(obj.id, 23)
+
+    def test_valid_width_and_height(self):
+        obj = Rectangle(3, 4)
+        self.assertEqual(obj.width, 3)
+        self.assertEqual(obj.height, 4)
+
+    def test_valid_y(self):
+        obj = Rectangle(3, 4)
+        obj.y = 2
+        self.assertEqual(obj.y, 2)
+
+    def test_invalid_y_type(self):
+        with self.assertRaises(TypeError):
+            obj = Rectangle(3, 4)
+            obj.y = 'invalid'
+
+    def test_negative_y_value(self):
+        with self.assertRaises(ValueError):
+            obj = Rectangle(3, 4)
+            obj.y = -1
+
+    def test_valid_x(self):
+        # Test valid x value
+        obj = Rectangle(3, 4)
+        obj.x = 2
+        self.assertEqual(obj.x, 2)
+
+    def test_invalid_x_type(self):
+        # Test invalid x type
+        with self.assertRaises(TypeError):
+            obj = Rectangle(3, 4)
+            obj.x = 'invalid'
+
+    def test_negative_x_value(self):
+        # Test negative x value
+        with self.assertRaises(ValueError):
+            obj = Rectangle(3, 4)
+            obj.x = -1
+
+    def test_zero_x_value(self):
+        # Test zero x value
+        obj = Rectangle(3, 4)
+        obj.x = 0
+        self.assertEqual(obj.x, 0)
+
+    def test_valid_x_with_default_values(self):
+        # Test valid x value with default values
+        obj = Rectangle(3, 4)
+        obj.x = 2
+        self.assertEqual(obj.width, 3)
+        self.assertEqual(obj.height, 4)
+        self.assertEqual(obj.y, 0)  # Assuming default y value is 0
+        self.assertEqual(obj.id, 25)
+
     def test_create_instance(self):
         rectangle_instance = Rectangle(5, 3)
         self.assertIsInstance(rectangle_instance, Rectangle)
