@@ -109,6 +109,15 @@ class TestBase(unittest.TestCase):
         for loaded_rect, original_rect in zip(loaded_rectangles, rectangles):
             self.assertEqual(loaded_rect.to_dictionary(), original_rect.to_dictionary())
 
+    def test_from_json_string_with_none(self):
+        result = Base.from_json_string(None)
+        self.assertEqual(result, '[]')
+
+    def test_from_json_string_with_single_object(self):
+        result = Base.from_json_string('[{ "id": 89 }]')
+        expected_result = [{"id": 89}]
+        self.assertEqual(result, expected_result)
+
 class TestRectangle(unittest.TestCase):
 
     def test_valid_width(self):
@@ -140,7 +149,7 @@ class TestRectangle(unittest.TestCase):
         obj = Rectangle(3, 4)
         self.assertEqual(obj.x, 0)  # Assuming default x value is 0
         self.assertEqual(obj.y, 0)  # Assuming default y value is 0
-        self.assertEqual(obj.id, 23)
+        self.assertEqual(obj.id, 33)
 
     def test_valid_width_and_height(self):
         obj = Rectangle(3, 4)
@@ -186,6 +195,61 @@ class TestRectangle(unittest.TestCase):
         obj.x = 0
         self.assertEqual(obj.x, 0)
 
+    def test_rectangle_instantiation(self):
+        rect = Rectangle(1, 2)
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 2)
+
+    def test_rectangle_instantiation_with_three_arguments(self):
+        rect = Rectangle(1, 2, 3)
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 0)
+
+    def test_rectangle_instantiation_with_four_arguments(self):
+        rect = Rectangle(1, 2, 3, 4)
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 4)
+
+    def test_rectangle_instantiation_with_five_arguments(self):
+        rect = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(rect.width, 1)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 4)
+        self.assertEqual(rect.id, 5)
+
+    def test_rectangle_invalid_instantiation_with_string_width(self):
+        with self.assertRaises(TypeError):
+            rect = Rectangle("1", 2)
+
+    def test_rectangle_invalid_instantiation_with_string_height(self):
+        with self.assertRaises(TypeError):
+            rect = Rectangle(1, "2")
+
+    def test_rectangle_invalid_instantiation_with_string_x(self):
+        with self.assertRaises(TypeError):
+            rect = Rectangle(1, 2, "3")
+
+    def test_rectangle_invalid_instantiation_with_string_y(self):
+        with self.assertRaises(TypeError):
+            rect = Rectangle(1, 2, 3, "4")
+
+    def test_rectangle_invalid_instantiation_with_negative_width(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(-1, 2)
+
+    def test_rectangle_invalid_instantiation_with_negative_height(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(1, -2)
+
+    def test_rectangle_invalid_instantiation_with_zero_width(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(0, 2)
+
     def test_valid_x_with_default_values(self):
         # Test valid x value with default values
         obj = Rectangle(3, 4)
@@ -193,7 +257,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(obj.width, 3)
         self.assertEqual(obj.height, 4)
         self.assertEqual(obj.y, 0)  # Assuming default y value is 0
-        self.assertEqual(obj.id, 25)
+        self.assertEqual(obj.id, 35)
 
     def test_create_instance(self):
         rectangle_instance = Rectangle(5, 3)
