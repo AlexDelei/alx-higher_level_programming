@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-import json
 """
 Parent class
 Performs varoius functions
 with various class methods
 """
+import json
 
 
 class Base:
