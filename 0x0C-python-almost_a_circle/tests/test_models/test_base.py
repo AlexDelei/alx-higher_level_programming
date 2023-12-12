@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import unittest
+from unittest.mock import patch
+from io import StringIO
 import os
 from models.base import Base
 from models.rectangle import Rectangle
@@ -149,7 +151,7 @@ class TestRectangle(unittest.TestCase):
         obj = Rectangle(3, 4)
         self.assertEqual(obj.x, 0)  # Assuming default x value is 0
         self.assertEqual(obj.y, 0)  # Assuming default y value is 0
-        self.assertEqual(obj.id, 33)
+        self.assertEqual(obj.id, 41)
 
     def test_valid_width_and_height(self):
         obj = Rectangle(3, 4)
@@ -250,6 +252,66 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(0, 2)
 
+    def test_rectangle_invalid_instantiation_with_zero_height(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(1, 0)
+
+    def test_rectangle_invalid_instantiation_with_negative_x(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(1, 2, -3)
+
+    def test_rectangle_invalid_instantiation_with_negative_y(self):
+        with self.assertRaises(ValueError):
+            rect = Rectangle(1, 2, 3, -4)
+
+    def test_area_calculation(self):
+        rect = Rectangle(3, 4)
+        self.assertEqual(rect.area(), 12)
+
+    def test_str_representation(self):
+        rect = Rectangle(3, 4, 1, 2)
+        expected_str = "[Rectangle] (37) 1/2 - 3/4"
+        self.assertEqual(str(rect), expected_str)
+
+    def setUp(self):
+        self.patcher = patch('sys.stdout', new_callable=StringIO)
+        self.mock_stdout = self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_display_without_coordinates(self):
+        rect = Rectangle(3, 4)
+        rect.display()
+        expected_output = "###\n###\n###\n###\n"
+        self.assertEqual(self.mock_stdout.getvalue(), expected_output)
+
+    def setUp(self):
+        self.patcher = patch('sys.stdout', new_callable=StringIO)
+        self.mock_stdout = self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_display_without_y_coordinate(self):
+        rect = Rectangle(3, 4, 1)
+        rect.display()
+        expected_output = " ###\n ###\n ###\n ###\n"
+        self.assertEqual(self.mock_stdout.getvalue(), expected_output)
+
+    def setUp(self):
+        self.patcher = patch('sys.stdout', new_callable=StringIO)
+        self.mock_stdout = self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
+
+    def test_display(self):
+        rect = Rectangle(3, 4, 1, 2)
+        rect.display()
+        expected_output = "\n\n ###\n ###\n ###\n ###\n"
+        self.assertEqual(self.mock_stdout.getvalue(), expected_output)
+
     def test_valid_x_with_default_values(self):
         # Test valid x value with default values
         obj = Rectangle(3, 4)
@@ -257,7 +319,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(obj.width, 3)
         self.assertEqual(obj.height, 4)
         self.assertEqual(obj.y, 0)  # Assuming default y value is 0
-        self.assertEqual(obj.id, 35)
+        self.assertEqual(obj.id, 43)
 
     def test_create_instance(self):
         rectangle_instance = Rectangle(5, 3)
