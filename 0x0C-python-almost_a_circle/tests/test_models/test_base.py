@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 from io import StringIO
 import os
 from models.base import Base
@@ -380,8 +380,129 @@ class TestSquare(unittest.TestCase):
 
     def test_str_representation(self):
         square = Square(3, 1, 2)
-        expected_str = "[Square] (57) 1/2 - 3"
+        expected_str = "[Square] (60) 1/2 - 3"
         self.assertEqual(str(square), expected_str)
+
+    def test_update_with_single_argument(self):
+        square = Square(3, 1, 2, 42)
+        square.update(89)
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 3)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
+
+    def test_update_with_multiple_arguments(self):
+        square = Square(3, 1, 2, 42)
+        square.update(89, 1)
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
+
+    def test_update_with_three_arguments(self):
+        square = Square(3, 1, 2, 42)
+        square.update(89, 1, 2)
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 2)
+
+    def test_update_with_four_arguments(self):
+        square = Square(3, 1, 2, 42)
+        square.update(89, 1, 2, 3)
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 3)
+
+    def test_update_with_kwargs(self):
+        square = Square(3, 1, 2, 42)
+        square.update(**{'id': 89})
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 3)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
+
+    def test_update_with_multiple_kwargs(self):
+        square = Square(3, 1, 2, 42)
+        square.update(**{'id': 89, 'size': 1})
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
+
+    def test_create_from_dict(self):
+        square_dict = {'id': 89, 'size': 3, 'x': 1, 'y': 2}
+        square = Square.create(**square_dict)
+
+        self.assertIsInstance(square, Square)
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 3)
+        self.assertEqual(square.x, 1)
+        self.assertEqual(square.y, 2)
+
+    def test_create_from_dict(self):
+        square_dict = {'id': 89, 'size': 1}
+        square = Square.create(**square_dict)
+
+        self.assertIsInstance(square, Square)
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+
+    def test_create_from_dict(self):
+        square_dict = {'id': 89, 'size': 1, 'x': 2}
+        square = Square.create(**square_dict)
+
+        self.assertIsInstance(square, Square)
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+
+    def test_create_from_dict(self):
+        square_dict = {'id': 89, 'size': 1, 'x': 4, 'y': 0}
+        square = Square.create(**square_dict)
+
+        self.assertIsInstance(square, Square)
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 4)
+        self.assertEqual(square.y, 0)
+
+    @patch('builtins.open', create=True)
+    def test_save_to_file_with_none(self, mock_open):
+        Square.save_to_file(None)
+        mock_open.assert_called_once_with('Square.json', 'w', encoding='utf-8')
+
+    @patch('builtins.open', create=True)
+    def test_save_to_file_with_empty_list(self, mock_open):
+        Square.save_to_file([])
+        mock_open.assert_called_once_with('Square.json', 'w', encoding='utf-8')
+
+    @patch('builtins.open', create=True)
+    def test_save_to_file_with_square_instance(self, mock_open):
+        Square.save_to_file([Square(1)])
+        mock_open.assert_called_once_with('Square.json', 'w', encoding='utf-8')
+
+    @patch('builtins.open', create=True)
+    def test_load_from_file_nonexistent(self, mock_open):
+        mock_open.side_effect = FileNotFoundError
+        result = Square.load_from_file()
+        self.assertEqual(result, [])
+
+    @patch('builtins.open', new_callable=mock_open, read_data='[{"id": 1, "size": 2, "x": 4, "y": 0}]')
+    def test_load_from_file_exists(self, mock_open_file):
+        result = Square.load_from_file()
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0].id, 1)
+        self.assertEqual(result[0].size, 2)
+        self.assertEqual(result[0].x, 4)
+        self.assertEqual(result[0].y, 0)
 
     def test_to_dictionary(self):
         square = Square(3, 1, 2, 42)
