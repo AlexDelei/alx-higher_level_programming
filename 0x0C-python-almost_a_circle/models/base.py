@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 import json
-"""Parent class"""
+"""
+Parent class
+Performs varoius functions
+with various class methods
+"""
 
 
 class Base:
     """
-    Parent Class
+    Parent Class performing cool stuff
     """
 
     __nb_objects = 0
