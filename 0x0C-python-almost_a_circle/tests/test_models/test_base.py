@@ -347,7 +347,7 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             square = Square("1")
 
-    def test_square_invalid_instantiation_with_string_y(self):
+    def test_square_invalid_instantiation_with_string_x(self):
         with self.assertRaises(TypeError):
             square = Square(1, "2")
 
@@ -380,7 +380,7 @@ class TestSquare(unittest.TestCase):
 
     def test_str_representation(self):
         square = Square(3, 1, 2)
-        expected_str = "[Square] (60) 1/2 - 3"
+        expected_str = "[Square] (61) 1/2 - 3"
         self.assertEqual(str(square), expected_str)
 
     def test_update_with_single_argument(self):
