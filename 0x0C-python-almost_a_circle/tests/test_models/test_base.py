@@ -332,6 +332,71 @@ class TestRectangle(unittest.TestCase):
 
 class TestSquare(unittest.TestCase):
 
+    def test_square_instantiation(self):
+        square = Square(1, 2)
+        self.assertEqual(square.width, 1)
+        self.assertEqual(square.x, 2)
+
+    def test_square_instantiation(self):
+        square = Square(1, 2, 3)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 3)
+
+    def test_square_invalid_instantiation_with_string_side_length(self):
+        with self.assertRaises(TypeError):
+            square = Square("1")
+
+    def test_square_invalid_instantiation_with_string_y(self):
+        with self.assertRaises(TypeError):
+            square = Square(1, "2")
+
+    def test_square_invalid_instantiation_with_string_y(self):
+        with self.assertRaises(TypeError):
+            square = Square(1, 2, "3")
+
+    def test_square_instantiation_with_id(self):
+        square = Square(1, 2, 3, 6)
+        self.assertEqual(square.size, 1)
+        self.assertEqual(square.x, 2)
+        self.assertEqual(square.y, 3)
+        self.assertEqual(square.id, 6)
+
+    def test_square_invalid_instantiation_with_negative_side_length(self):
+        with self.assertRaises(ValueError):
+            square = Square(-1)
+
+    def test_square_invalid_instantiation_with_negative_x(self):
+        with self.assertRaises(ValueError):
+            square = Square(1, -2)
+
+    def test_square_invalid_instantiation_with_negative_y(self):
+        with self.assertRaises(ValueError):
+            square = Square(1, 2, -3)
+
+    def test_square_invalid_instantiation_with_zero_side_length(self):
+        with self.assertRaises(ValueError):
+            square = Square(0)
+
+    def test_str_representation(self):
+        square = Square(3, 1, 2)
+        expected_str = "[Square] (57) 1/2 - 3"
+        self.assertEqual(str(square), expected_str)
+
+    def test_to_dictionary(self):
+        square = Square(3, 1, 2, 42)
+        expected_dict = {'id': 42, 'size': 3, 'x': 1, 'y': 2}
+        self.assertEqual(square.to_dictionary(), expected_dict)
+
+    def test_update(self):
+        square = Square(3, 1, 2, 42)
+        square.update(4, 5, 6, 7)
+
+        self.assertEqual(square.id, 4)
+        self.assertEqual(square.size, 5)
+        self.assertEqual(square.x, 6)
+        self.assertEqual(square.y, 7)
+
     def test_create_instance(self):
         square_instance = Square(5)
         self.assertIsInstance(square_instance, Square)
