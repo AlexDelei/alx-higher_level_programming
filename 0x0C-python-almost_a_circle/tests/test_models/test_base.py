@@ -383,6 +383,15 @@ class TestSquare(unittest.TestCase):
         expected_str = "[Square] (61) 1/2 - 3"
         self.assertEqual(str(square), expected_str)
 
+    def test_update_with_args(self):
+        square = Square(3, 1, 2, 42)
+        square.update(id=89, size=8, x=3)
+
+        self.assertEqual(square.id, 89)
+        self.assertEqual(square.size, 8)
+        self.assertEqual(square.x, 3)
+        self.assertEqual(square.y, 2)
+
     def test_update_with_single_argument(self):
         square = Square(3, 1, 2, 42)
         square.update(89)

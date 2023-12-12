@@ -1,29 +1,20 @@
 #!/usr/bin/python3
-""" 11-main """
+""" Check """
 from models.square import Square
 
-if __name__ == "__main__":
+s = Square(5, 1, 4, 3)
+s.update(id=89, size=6, x=2)
 
-    s1 = Square(5)
-    print(s1)
+if s.id != 89:
+    print("ID of the Square must be updated to 89: {}".format(s.id))
+    exit(1)
 
-    s1.update(10)
-    print(s1)
+if s.size != 6:
+    print("Size of the Square must be updated to 6: {}".format(s.size))
+    exit(1)
 
-    s1.update(1, 2)
-    print(s1)
-
-    s1.update(1, 2, 3)
-    print(s1)
-
-    s1.update(1, 2, 3, 4)
-    print(s1)
-
-    s1.update(x=12)
-    print(s1)
-
-    s1.update(size=7, y=1)
-    print(s1)
-
-    s1.update(size=7, id=89, y=1)
-    print(s1)
+if s.x != 2:
+    print("X of the Square must be updated to 2: {}".format(s.x))
+    exit(1)
+    
+print("OK", end="")
