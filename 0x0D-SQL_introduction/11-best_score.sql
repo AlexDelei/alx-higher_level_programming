@@ -1,4 +1,5 @@
-USE hbtn_0c_0; -- Replace 'hbtn_0c_0' with the actual database name passed as an argument
+-- Listing score and names from second_table
+-- Scores listed are above or eq 10
 
 SELECT score, name
 FROM second_table

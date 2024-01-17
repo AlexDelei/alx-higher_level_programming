@@ -1,4 +1,4 @@
-USE hbtn_0c_0; -- Replace 'hbtn_0c_0' with the actual database name passed as an argument
+-- lists all records of the table second_table
 
 SELECT score, name
 FROM second_table

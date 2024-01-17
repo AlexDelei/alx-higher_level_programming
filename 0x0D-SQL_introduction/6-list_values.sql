@@ -1,2 +1,2 @@
-USE hbtn_0c_0;
+-- lists everything in tabkle first_table.
 SELECT * FROM first_table

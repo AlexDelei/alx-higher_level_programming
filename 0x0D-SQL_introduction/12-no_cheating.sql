@@ -1,4 +1,4 @@
-USE hbtn_0c_0; -- Replace 'hbtn_0c_0' with the actual database name passed as an argument
+-- Updates the score of Bob
 
 UPDATE second_table
 SET score = 10

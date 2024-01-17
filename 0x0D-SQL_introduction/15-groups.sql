@@ -1,4 +1,4 @@
-USE hbtn_0c_0; -- Replace 'hbtn_0c_0' with the actual database name passed as an argument
+-- lists the number of records with the same score in the table
 
 SELECT score, COUNT(*) AS 'number'
 FROM second_table

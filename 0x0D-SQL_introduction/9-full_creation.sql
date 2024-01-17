@@ -1,4 +1,4 @@
-USE hbtn_0c_0;
+-- Creating a table called second_table and adding data
 CREATE TABLE IF NOT EXISTS second_table (
     id INT,
     name VARCHAR(256),

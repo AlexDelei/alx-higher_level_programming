@@ -1,3 +1,2 @@
-USE `hbtn_0c_0`; -- Switch to the specified database
-
+-- show the description of table first_table.
 SHOW CREATE TABLE first_table

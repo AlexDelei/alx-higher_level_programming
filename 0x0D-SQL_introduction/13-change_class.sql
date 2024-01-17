@@ -1,4 +1,4 @@
-USE hbtn_0c_0; -- Replace 'hbtn_0c_0' with the actual database name passed as an argument
+-- Delets from table second_table all the score below 5
 
 DELETE FROM second_table
 WHERE score <= 5;
