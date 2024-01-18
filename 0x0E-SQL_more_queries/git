@@ -1,0 +1,4 @@
+#!/bin/bash
+git add .
+git commit -m 'create user, grants previliges, join db and tables'
+git push
