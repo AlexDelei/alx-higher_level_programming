@@ -1,11 +1,10 @@
--- listing everything
-
-SELECT tv_genres.name
+SELECT name
 FROM tv_genres
-WHERE tv_genres.id NOT IN (
-    SELECT tv_show_genres.genre_id
-    FROM tv_show_genres
-    JOIN tv_shows ON tv_show_genres.show_id = shows.id
-    WHERE tv_shows.title = 'Dexter'
-)
-ORDER BY tv_genres.name ASC;
+WHERE name NOT IN
+(SELECT name
+FROM tv_genres
+LEFT JOIN tv_show_genres ON tv_genres.id = tv_show_genres.genre_id
+LEFT JOIN tv_shows ON tv_show_genres.show_id = tv_shows.id
+WHERE tv_shows.title = 'Dexter')
+GROUP BY name
+ORDER BY name ASC;
