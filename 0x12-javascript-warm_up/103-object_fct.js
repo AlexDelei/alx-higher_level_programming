@@ -4,8 +4,8 @@ const myObject = {
   value: 12
 };
 console.log(myObject);
-myObject.__proto__.incr = function () {
-	this.value++;
+Object.getPrototypeOf(myObject).incr = function () {
+  this.value++;
 };
 myObject.incr();
 console.log(myObject);
