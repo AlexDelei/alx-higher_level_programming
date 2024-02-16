@@ -16,7 +16,7 @@ def list_caes(username, password, database):
 
     for i in result:
         print(i)
-
+    db.close()
 
 if __name__ == '__main__':
     if len(sys.argv) != 4:
