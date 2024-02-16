@@ -18,6 +18,7 @@ def list_caes(username, password, database):
         print(i)
     db.close()
 
+
 if __name__ == '__main__':
     if len(sys.argv) != 4:
         print("Usage: executable.py <username> <password> <database>")
