@@ -14,7 +14,12 @@ def list_with_args(user, pwd, db, state):
     -> database: hbtn_0e_0_usa
     -> state: the state to list from our db
     """
-    db = MySQLdb.connect(user=user, password=pwd, database=db)
+    db = MySQLdb.connect(
+            user=user,
+            password=pwd,
+            database=db,
+            host="localhost",
+            port=3306)
     query = db.cursor()
     query.execute(
             "SELECT * FROM states WHERE name = '{}'"
