@@ -14,13 +14,9 @@ def list_cases(username, password, database):
             "SELECT * FROM states WHERE name LIKE 'N%' "
             "ORDER BY states.id ASC"
             )
-
     result = query.fetchall()
-
     for i in result:
         print(i)
-
-    db.close()
 
 
 if __name__ == '__main__':
