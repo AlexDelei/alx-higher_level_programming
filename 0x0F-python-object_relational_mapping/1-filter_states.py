@@ -19,6 +19,7 @@ def list_caes(username, password, database):
 
     for i in result:
         print(i)
+
     db.close()
 
 
