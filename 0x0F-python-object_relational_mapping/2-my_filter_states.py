@@ -31,8 +31,6 @@ def list_with_args(user, pwd, db, state):
     if result:
         for i in result:
             print(i)
-    else:
-        print()
     db.close()
 
 
