@@ -17,7 +17,7 @@ def list_with_args(user, pwd, db, state):
     db = MySQLdb.connect(user=user, password=pwd, database=db)
     query = db.cursor()
     query.execute(
-            "SELECT * FROM states WHERE states.name = '{}'"
+            "SELECT * FROM states WHERE name = '{}'"
             .format(state)
             )
     result = query.fetchall()
