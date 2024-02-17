@@ -28,7 +28,7 @@ def list_cases(username, password, database):
 if __name__ == '__main__':
     # Check if arguments are provided
     if len(sys.argv) != 4:
-        print("Usage: executable.py <username> <password> <database>")
+        print("Usage: ./executable.py <username> <password> <database>")
         sys.exit(1)
     username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
     list_cases(username, password, database)

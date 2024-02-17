@@ -22,7 +22,8 @@ def list_with_args(user, pwd, db, state):
             port=3306)
     query = db.cursor()
     query.execute(
-            "SELECT * FROM states WHERE name = '{}' "
+            "SELECT states.id, states.name "
+            "FROM states WHERE name = '{}' "
             "ORDER BY states.id ASC".format(state)
             )
     result = query.fetchall()
