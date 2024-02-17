@@ -10,7 +10,7 @@ def list_caes(username, password, database):
     """"list view wothout restrications"""
     db = MySQLdb.connect(user=username, password=password, database=database)
     query = db.cursor()
-    query.execute(f"SELECT * FROM states WHERE name LIKE 'N%'")
+    query.execute("SELECT * FROM states WHERE name LIKE 'N%'")
 
     result = query.fetchall()
 
