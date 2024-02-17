@@ -8,7 +8,13 @@ import sys
 
 def list_cases(username, password, database):
     """"list view wothout restrications"""
-    db = MySQLdb.connect(user=username, password=password, database=database)
+    db = MySQLdb.connect(
+            user=username,
+            password=password,
+            database=database
+            host="localhost",
+            port=3306
+            )
     query = db.cursor()
     query.execute(
             "SELECT * FROM states WHERE name LIKE 'N%' "
