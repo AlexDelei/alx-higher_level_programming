@@ -28,8 +28,11 @@ def list_with_args(user, pwd, db, state):
             )
     result = query.fetchall()
 
-    for i in result:
-        print(i)
+    if result:
+        for i in result:
+            print(i)
+    else:
+        print()
     db.close()
 
 
