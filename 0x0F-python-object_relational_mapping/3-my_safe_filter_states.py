@@ -21,8 +21,7 @@ def list_with_args(user, pwd, db, state):
             host="localhost",
             port=3306)
     query = db.cursor()
-    query.execute(
-            "SELECT * FROM states WHERE name = %s", (state,))
+    query.execute("SELECT * FROM states WHERE name = %s", (state,))
 
     result = query.fetchall()
 
@@ -38,4 +37,3 @@ if __name__ == '__main__':
         sys.exit(1)
     user, pwd, db, state = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
     list_with_args(user, pwd, db, state)
-    print(state)
