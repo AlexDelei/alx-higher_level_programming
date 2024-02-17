@@ -11,7 +11,7 @@ def list_cases(username, password, database):
     db = MySQLdb.connect(
             user=username,
             password=password,
-            database=database
+            database=database,
             host="localhost",
             port=3306
             )
