@@ -24,4 +24,4 @@ class State(Base):
 
     cities = relationship("City", back_populates="state")
 
-from model_city import City
+
