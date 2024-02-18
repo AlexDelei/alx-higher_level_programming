@@ -7,7 +7,8 @@ import sys
 
 
 def list_cases(username, password, database):
-    """"list view wothout restrications"""
+    """"
+    """
     db = MySQLdb.connect(
             user=username,
             password=password,
@@ -23,7 +24,7 @@ def list_cases(username, password, database):
     result = query.fetchall()
     for i in result:
         print(i)
-
+    db.close()
 
 if __name__ == '__main__':
     # Check if arguments are provided

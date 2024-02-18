@@ -26,13 +26,13 @@ def list_cities(user, pwd, db):
     query.execute(
             "SELECT cities.id, cities.name, states.name FROM cities "
             "JOIN states WHERE cities.state_id = states.id "
-            "ORDER BY cities.id"
+            "ORDER BY cities.id ASC"
             )
     result = query.fetchall()
 
     for i in result:
         print(i)
-
+    db.close()
 
 if __name__ == '__main__':
     # parsing arguments
