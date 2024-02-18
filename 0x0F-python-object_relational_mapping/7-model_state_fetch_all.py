@@ -21,6 +21,6 @@ if __name__ == '__main__':
     result = session.query(State).order_by(State.id.asc()).all()
 
     for i in result:
-        print(i.id, ": ", i.name)
+        print(f"{i.id}: {i.name}")
 
     session.close()
