@@ -8,6 +8,7 @@ from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Table
+from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
@@ -20,3 +21,7 @@ class State(Base):
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True, nullable=True, autoincrement=True)
     name = Column(String(128), nullable=False)
+
+    cities = relationship("City", back_populates="state")
+
+from model_city import City
