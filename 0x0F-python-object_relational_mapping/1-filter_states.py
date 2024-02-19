@@ -8,6 +8,8 @@ import sys
 
 def list_cases(username, password, database):
     """"
+    function that lists according with the character
+    in them
     """
     db = MySQLdb.connect(
             user=username,
@@ -18,13 +20,15 @@ def list_cases(username, password, database):
             )
     query = db.cursor()
     query.execute(
-            "SELECT * FROM states WHERE name LIKE 'N%' "
+            "SELECT * FROM states WHERE BINARY name  "
+            "LIKE 'N%' "
             "ORDER BY states.id ASC"
             )
     result = query.fetchall()
     for i in result:
         print(i)
     db.close()
+
 
 if __name__ == '__main__':
     # Check if arguments are provided
