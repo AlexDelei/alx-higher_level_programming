@@ -23,7 +23,7 @@ def list_with_args(user, pwd, db, state):
     query = db.cursor()
     query.execute(
             "SELECT states.id, states.name "
-            "FROM states WHERE name = '{}' "
+            "FROM states WHERE BINARY name = '{}' "
             "ORDER BY states.id ASC".format(state)
             )
     result = query.fetchall()
