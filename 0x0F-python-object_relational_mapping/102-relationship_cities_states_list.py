@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-
+just listing all objects in
+my database
 """
 import sqlalchemy
 import sys
@@ -20,9 +21,9 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
     result = session.query(City, State) \
-            .join(State, City.state_id == State.id) \
-            .order_by(State.id.asc(), City.id.asc()) \
-            .all()
+        .join(State, City.state_id == State.id) \
+        .order_by(State.id.asc(), City.id.asc()) \
+        .all()
     for city, state in result:
         print(f"{city.id}: {city.name} -> {state.name}")
     session.close()
