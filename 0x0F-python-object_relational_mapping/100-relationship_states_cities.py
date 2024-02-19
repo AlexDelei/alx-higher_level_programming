@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from model_state import Base, State
 from model_city import City
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import insert
 
 
 if __name__ == '__main__':
@@ -20,17 +21,17 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Creating State "California
-    cali = State(name="California")
+    new = State(name='California')
+    city = City(name="San Francisco")
 
-    # Creating a city and linking it to state
-    san = City(name="San Francisco")
-    cali.cities.append(san)
+    session.add(new)
+    session.commit()
 
-    # adding both State and City to the session
-    session.add(cali)
+    stmt2 = insert(City).values(name=city.name, state_id=new.id)
+    session.execute(stmt2)
 
     session.commit()
+
     # Closing the connection
 
     session.close()

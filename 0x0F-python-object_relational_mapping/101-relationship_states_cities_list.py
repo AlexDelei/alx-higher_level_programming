@@ -8,6 +8,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 from model_city import City
+from sqlalchemy import select
 
 
 if __name__ == '__main__':
@@ -20,9 +21,9 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
     result = session.query(City, State) \
-            .join(State, City.state_id == State.id) \
+            .join(City, City.state_id == State.id) \
             .order_by(State.id.asc(), City.id.asc()) \
             .all()
     for city, state in result:
-        print(f"{city.id}: {city.name} -> {state.name}")
+        print(f"{city.id}: {city.name} -> {state.name} {state.id}")
     session.close()
