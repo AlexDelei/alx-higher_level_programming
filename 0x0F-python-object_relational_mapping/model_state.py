@@ -23,4 +23,4 @@ class State(Base):
     name = Column(String(128), nullable=False)
 
 
-State.cities = relationship("City", back_populates="state")
+cities = relationship("City", back_populates="state")
