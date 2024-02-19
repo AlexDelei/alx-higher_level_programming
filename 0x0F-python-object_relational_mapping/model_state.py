@@ -22,5 +22,5 @@ class State(Base):
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
     name = Column(String(128), nullable=False)
 
-    cities = relationship("City", back_populates="state")
-from model_city import City
+
+State.cities = relationship("City", back_populates="state")
