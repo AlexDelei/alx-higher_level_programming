@@ -16,6 +16,6 @@ if __name__ == '__main__':
         if not r.json():
             print("No result")
         else:
-            print(f"[{r.json()[id]}] {r.json[name]}")
+            print(f"[{r.json()[id]}] {r.json()[name]}")
     except ValueError:
         print("Not a valid JSON")
