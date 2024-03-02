@@ -9,15 +9,13 @@ import sys
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        q = sys.argv[1]
-    else:
-        q = ""
+    q = sys.argv[1] if len(sys.argv) > 1 else ""
     url = 'http://0.0.0.0:5000/search_user'
-    r = requests.post(url, data={'q': q})
-    if not r.json():
-        print("No result")
-    elif '{' and '}' and ':' not in r.json():
+    try:
+        r = requests.post(url, data={'q': q})
+        if not r.json():
+            print("No result")
+        else:
+            print(f"[{r.json()[id]}] {r.json[name]}")
+    except ValueError:
         print("Not a valid JSON")
-    else:
-        print(f"[{r.json()[id]}] {r.json[name]}")
