@@ -11,4 +11,4 @@ if __name__ == '__main__':
     url = sys.argv[1]
     r = requests.get(url)
     hed = r.headers
-    print(hed['X-Request-Id'])
+    print(hed.get('X-Request-Id'))
