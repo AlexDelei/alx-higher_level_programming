@@ -12,7 +12,7 @@ if __name__ == '__main__':
     email = {'email': f"{sys.argv[2]}"}
     data = urllib.parse.urlencode(email)
     data = data.encode('utf-8')
-    req = urllib.request.Request(url, data=data, method='POST')
+    req = urllib.request.Request(url, data, method='POST')
     with urllib.request.urlopen(req) as resp:
         page = resp.read().decode('utf-8')
 
