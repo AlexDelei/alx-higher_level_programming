@@ -31,8 +31,8 @@ def get_commits(user, repo):
 
 
 if __name__ == '__main__':
-    usr = sys.argv[1]
-    repo = sys.argv[2]
+    repo = sys.argv[1]
+    usr = sys.argv[2]
 
     user_data = get_commits(usr, repo)
     if user_data:
