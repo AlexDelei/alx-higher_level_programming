@@ -39,6 +39,6 @@ if __name__ == '__main__':
         for comm in user_data:
             sha = comm['sha']
             name = comm['commit']['author']['name']
-            print(f"{sha}: {name}")
+            print(f"{sha}: {name}", end="\n")
     else:
         print(None)
