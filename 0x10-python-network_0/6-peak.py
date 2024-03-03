@@ -14,13 +14,11 @@ def find_peak(list_of_integers):
     Returns:
     - The peak elemet(s)
     """
-    if not list_of_integers:
-        return None
-    low, high = 0, len(list_of_integers) - 1
-
-    mid = high // 2
-    if list_of_integers[mid] > list_of_integers[mid + 1]:
-        high = mid
+    if list_of_integers:
+        small = list_of_integers[0]
+        for j in range(1, len(list_of_integers)):
+            if list_of_integers[j] > small:
+                small = list_of_integers[j]
+        return small
     else:
-        low = mid + 1
-    return list_of_integers[low]
+        return None
