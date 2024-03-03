@@ -6,7 +6,7 @@ import sys
 import requests
 
 
-def get_commits(user, repo, tokn):
+def get_commits(user, repo):
     """
     A function to fetch commits done on a certain repo
 
@@ -20,7 +20,6 @@ def get_commits(user, repo, tokn):
     url = f'https://api.github.com/repos/{user}/{repo}/commits'
     headers = {
             "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {tokn}",
             "X-Github-Api-Version": "2022-11-28"
             }
     resp = requests.get(url, headers=headers)
@@ -34,9 +33,8 @@ def get_commits(user, repo, tokn):
 if __name__ == '__main__':
     usr = sys.argv[1]
     repo = sys.argv[2]
-    tkn = sys.argv[3]
 
-    user_data = get_commits(usr, repo, tkn)
+    user_data = get_commits(usr, repo)
     if user_data:
         for comm in user_data:
             sha = comm['sha']
