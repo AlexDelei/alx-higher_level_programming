@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     user_data = get_commits(usr, repo)
     if user_data:
-        for comm in user_data:
+        for i, comm in enumerate(user_data[:10]):
             sha = comm['sha']
             name = comm['commit']['author']['name']
             print(f"{sha}: {name}", end="\n")
