@@ -1,3 +1,3 @@
 #!/bin/bash
 # sending a message from a server
-curl -X PUT -Ls -d "You got me!"  0.0.0.0:5000/catch_me --output /dev/null
+curl -sLX PUT 0.0.0.0:5000/catch_me -d "user_id=98" -H "Origin: HolbertonSchool"
